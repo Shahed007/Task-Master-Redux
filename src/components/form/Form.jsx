@@ -16,7 +16,7 @@ const Form = ({ children, onSubmit, resolver, defaultValues, className }) => {
 
   const submit = (data) => {
     onSubmit(data);
-    reset;
+    reset();
   };
 
   return (
