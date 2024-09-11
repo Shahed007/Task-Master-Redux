@@ -9,6 +9,11 @@ import { addTask } from "../../redux/featuers/task/taskSlice";
 
 const AddTaskModal = ({ isOpen, setIsOpen }) => {
   const dispatch = useDispatch();
+
+  const onCancel = () => {
+    setIsOpen(false);
+  };
+
   const handleSubmitTask = (data) => {
     dispatch(addTask(data));
     setIsOpen(false);
@@ -38,12 +43,21 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
           label={"Priority"}
           name="priority"
         />
-        <Button
-          type="submit"
-          className="rounded bg-sky-600 py-2 px-4 text-sm text-white data-[hover]:bg-sky-500 data-[active]:bg-sky-700"
-        >
-          Add Task
-        </Button>
+        <div className="flex items-center gap-6">
+          <Button
+            type="submit"
+            className="rounded bg-sky-600 py-2 px-4 w-full text-sm text-white data-[hover]:bg-sky-500 data-[active]:bg-sky-700"
+          >
+            Add Task
+          </Button>
+          <Button
+            onClick={onCancel}
+            type="button"
+            className="rounded w-full bg-red-600 py-2 px-4 text-sm text-white data-[hover]:bg-red-500 data-[active]:bg-red-700"
+          >
+            Cancel
+          </Button>
+        </div>
       </Form>
     </Modal>
   );
