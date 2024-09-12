@@ -3,9 +3,15 @@ import MyTasks from "../components/tasks/MyTasks";
 import TaskCard from "../components/tasks/TaskCard";
 import { useState } from "react";
 import AddTaskModal from "../components/tasks/AddTaskModal";
+import { useSelector } from "react-redux";
 
 const Tasks = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { task } = useSelector((state) => state.taskSlice);
+
+  const pending = task.filter((item) => item.status === "pending");
+  const running = task.filter((item) => item.status === "running");
+  const done = task.filter((item) => item.status === "done");
   return (
     <div className="h-screen grid grid-cols-12">
       <div className="col-span-9 px-10 pt-10">
@@ -42,7 +48,9 @@ const Tasks = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <TaskCard />
+              {pending?.map((item) => (
+                <TaskCard key={item.id} task={item} />
+              ))}
             </div>
           </div>
           <div className="relative h-[800px] overflow-auto">
@@ -53,8 +61,9 @@ const Tasks = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <TaskCard />
-              <TaskCard />
+              {running?.map((item) => (
+                <TaskCard key={item.id} task={item} />
+              ))}
             </div>
           </div>
           <div className="relative h-[800px] overflow-auto">
@@ -65,7 +74,9 @@ const Tasks = () => {
               </p>
             </div>
             <div className="space-y-3">
-              <TaskCard />
+              {done?.map((item) => (
+                <TaskCard key={item.id} task={item} />
+              ))}
             </div>
           </div>
         </div>
