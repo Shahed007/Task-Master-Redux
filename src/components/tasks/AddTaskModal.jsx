@@ -21,7 +21,7 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen} title={"Programming Hero"}>
       <Form
-        className={"w-[320px] flex flex-col gap-4"}
+        className={" flex flex-col gap-4"}
         onSubmit={handleSubmitTask}
       >
         <Input label="Title" name="title" placeholder="Title here" />
@@ -32,7 +32,7 @@ const AddTaskModal = ({ isOpen, setIsOpen }) => {
         />
         <Input type="date" label="Dateline" name="dateline" />
         <Select
-          name={"assign"}
+          name={"assignedTo"}
           label="Assign to"
           defaultValue="MD Shahed"
           options={["MD Shahed", "Tanvir Ahamed"]}
